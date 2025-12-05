@@ -1,0 +1,12 @@
+class Solution {
+    static int evenlyDivides(int n) {
+        String num = Integer.toString(n);
+        int sum = 0;
+        for(int i=0; i<num.length(); i++){
+            int digit = num.charAt(i) - '0';
+            if(digit != 0 && n  % digit == 0)
+              sum = sum+ 1;
+        }
+        return sum;
+    }
+}
