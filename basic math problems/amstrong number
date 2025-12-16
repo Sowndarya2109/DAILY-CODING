@@ -1,0 +1,15 @@
+class Solution {
+    static boolean armstrongNumber(int n) {
+        int sum = 0;
+        String str = Integer.toString(n);
+        for(int i=0; i<str.length(); i++){
+            int digit = str.charAt(i) - '0';
+            double cube = digit * digit * digit;
+            sum += cube;
+        }
+        if(sum == n)
+            return true;
+        return false;
+        
+    }
+}
