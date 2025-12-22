@@ -1,0 +1,17 @@
+class Solution {
+    public void sort012(int[] arr) {
+        int min = 0;
+        ArrayList<Integer> num = new ArrayList<>();
+        while(min <= 2){
+       for(int i=0; i<arr.length; i++){
+           if(arr[i] == min){
+           num.add(min);
+         }
+       }
+        min++;
+       }
+      for(int i=0; i<arr.length; i++){
+          arr[i] = num.get(i);
+      }
+    }
+}
