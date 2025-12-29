@@ -1,0 +1,32 @@
+class Solution {
+    public int splitArray(int[] nums, int k) {
+        int n = nums.length;
+        int l = 0, h = 0;
+        for(int num : nums){
+            l = Math.max(num, l);
+            h += num;
+        }
+        while(l<h){
+            int mid = l + (h-l)/2;
+            if(canSplit(nums, k, mid))
+            h = mid;
+            else 
+            l = mid+1;
+        }
+        return l;
+    }
+        private boolean canSplit(int nums[], int k, int maxsum){
+            int subarray = 1;
+            int sum = 0;
+            for(int num : nums){
+                sum += num;
+                if(sum > maxsum){
+                    subarray++;
+                    sum = num;
+                     if(subarray > k)
+                     return false;
+                }  
+            }
+            return true;
+        }
+} 
