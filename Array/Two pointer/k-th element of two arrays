@@ -1,0 +1,15 @@
+class Solution {
+    public int kthElement(int a[], int b[], int k) {
+       int[] merged = new int[a.length+b.length];
+       for(int i=0; i<a.length; i++){
+           merged[i] = a[i];
+       }
+       for(int i=0; i<b.length; i++){
+           merged[a.length+i] = b[i];
+       }
+       Arrays.sort(merged);
+       return merged[k-1];
+        
+        
+    }
+}
