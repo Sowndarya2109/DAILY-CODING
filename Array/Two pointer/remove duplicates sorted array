@@ -1,0 +1,10 @@
+class Solution {
+    // Function to remove duplicates from the given array.
+    ArrayList<Integer> removeDuplicates(int[] arr) {
+        TreeSet<Integer> set = new TreeSet<>();
+        for(int x : arr)
+        set.add(x);
+        return new ArrayList<>(set);
+        
+    }
+}
