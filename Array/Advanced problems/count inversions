@@ -1,0 +1,33 @@
+class Solution {
+    static int inversionCount(int arr[]) {
+        return mergeCount(arr, 0, arr.length-1);
+    }
+    private static int mergeCount(int arr[], int left, int right){
+        int count = 0;
+        if(left < right){
+            int mid = (left + right)/2;
+            count += mergeCount(arr, left, mid);
+            count += mergeCount(arr, mid+1, right);
+            count += merge(arr, left, mid, right);
+        }
+        return count;
+    }
+    private static int merge(int arr[], int left, int mid, int right){
+        int leftarr[] = java.util.Arrays.copyOfRange(arr, left, mid+1);
+        int rightarr[] = java.util.Arrays.copyOfRange(arr, mid+1, right+1);
+        int i=0, j=0, k=left, swap=0;
+        while(i<leftarr.length && j<rightarr.length){
+            if(leftarr[i] <= rightarr[j])
+            arr[k++] = leftarr[i++];
+            else{
+                arr[k++] = rightarr[j++];
+                swap += (mid+1)-(left+i);
+            }
+        }
+        while(i<leftarr.length)
+        arr[k++] = leftarr[i++];
+        while(j<rightarr.length)
+        arr[k++] = rightarr[j++];
+        return swap;
+    }
+}
