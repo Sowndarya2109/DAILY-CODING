@@ -1,0 +1,33 @@
+class Solution {
+    public boolean isDigitorialPermutation(int n) {
+        String s = Integer.toString(n);
+        int arr[] = new int[s.length()];
+        
+        int sum = 0;
+        for(int i=0; i<s.length(); i++){
+            arr[i] = s.charAt(i) - '0';
+        }
+        for(int i=0; i<arr.length; i++){
+             sum += factorial(arr[i]);
+        }
+        
+        String a = Integer.toString(sum);
+        int ans[] = new int[a.length()];
+        for(int i=0; i<a.length(); i++){
+            ans[i] = a.charAt(i) - '0';
+        }
+
+        Arrays.sort(arr);
+        Arrays.sort(ans);
+        if(Arrays.equals(arr, ans))
+            return true;
+         return false;
+    }
+    private int factorial(int a){
+        int fact = 1;
+        for(int i=2; i<=a; i++){
+            fact *= i;
+        }
+        return fact;
+    }
+}©leetcode
