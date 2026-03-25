@@ -1,0 +1,33 @@
+class Solution {
+    public static Boolean tss(int arr[], int idx, int target, int[][] dp){
+        if(idx == 0 || target == 0){
+            if(target == 0)
+                return true;
+            return false;
+        }
+        if(dp[idx][target] != -1){
+            if(dp[idx][target] == 1)
+                return true;
+             return false;
+        }
+        boolean b1 = false;
+        if(target-arr[idx-1] >= 0)
+            b1 = tss(arr, idx-1, target-arr[idx-1], dp);
+        boolean b2 = tss(arr, idx-1, target, dp);
+        if(b1 || b2){
+            dp[idx][target] = 1;
+            return true;
+        }
+        else{
+            dp[idx][target] = 0;
+            return false;
+        }
+    }
+    static Boolean isSubsetSum(int arr[], int sum) {
+       int dp[][] = new int[arr.length+1][sum+1];
+       for(int[] x : dp)
+            Arrays.fill(x, -1);
+       return tss(arr, arr.length, sum, dp); 
+       
+    }
+}
