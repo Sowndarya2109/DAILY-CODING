@@ -1,0 +1,21 @@
+class Solution {
+    public int knap(int cap, int []price, int []wt, int idx, int [][]dp){
+        if(idx == 0 || cap == 0){
+            return 0;
+        }
+        if(dp[idx][cap] != -1)
+            return dp[idx][cap];
+        int op1 = 0;
+        if(cap-wt[idx-1] >= 0)
+            op1 = knap(cap-wt[idx-1], price, wt, idx, dp) + price[idx-1];
+        int op2 = knap(cap, price, wt, idx-1, dp);
+        int mans = Math.max(op1, op2);
+        return dp[idx][cap] = mans;
+    }
+    public int knapSack(int val[], int wt[], int capacity) {
+        int dp[][] = new int[val.length+1][capacity+1];
+        for(int []x : dp)
+            Arrays.fill(x, -1);
+        return knap(capacity, val, wt, val.length, dp);
+    }
+}
