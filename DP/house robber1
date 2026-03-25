@@ -1,0 +1,19 @@
+class Solution {
+    public static int rob_house(int arr[], int idx, int[] dp){
+        if(idx >= arr.length)
+            return 0;
+        if(dp[idx] != -1)
+            return dp[idx];
+        int op1 = rob_house(arr, idx+2, dp) + arr[idx];
+        int op2 = rob_house(arr, idx+1, dp);
+        int mans = Math.max(op1, op2);
+        dp[idx] = mans;
+        return mans;
+
+    }
+    public int rob(int[] nums) {
+        int dp[] = new int[nums.length];
+        Arrays.fill(dp, -1);
+        return rob_house(nums, 0, dp);
+    }
+}
