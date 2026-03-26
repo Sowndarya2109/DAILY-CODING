@@ -1,0 +1,60 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    class data{
+        TreeNode node;
+        int k;
+        data(TreeNode n, int k){
+            this.node = n;
+            this.k = k;
+        }
+    }
+    HashMap<TreeNode, TreeNode> map = new HashMap<>();
+    public void mapping(TreeNode root){
+        if(root == null)
+            return;
+        if(root.left != null)
+            map.put(root.left, root);
+        if(root.right != null)
+            map.put(root.right, root);
+        mapping(root.left);
+        mapping(root.right);
+    }
+    public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+        mapping(root);
+        Queue<data> q = new LinkedList<>();
+        HashSet<TreeNode> hs = new HashSet<>();
+        hs.add(target);
+        List<Integer> ans = new ArrayList<>();
+        q.add(new data(target, k));
+        while(q.size() > 0){
+            data d = q.poll();
+            if(d.k == 0){
+                ans.add(d.node.val);
+            }
+            else{
+                if(d.node.left != null && hs.contains(d.node.left) == false){
+                    q.add(new data(d.node.left, d.k-1));
+                    hs.add(d.node.left);
+                }
+                if(d.node.right != null && hs.contains(d.node.right) == false){
+                    q.add(new data(d.node.right, d.k-1));
+                    hs.add(d.node.right);
+                }
+                TreeNode parent = map.get(d.node);
+                if(parent != null && hs.contains(parent) == false){
+                    q.add(new data(parent, d.k-1));
+                    hs.add(parent);
+                }
+            }
+        }
+        return ans;
+    }
+}
