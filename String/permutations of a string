@@ -1,0 +1,22 @@
+class Solution {
+    public void swap(StringBuilder sb, int i, int j){
+        char temp = sb.charAt(i);
+        sb.setCharAt(i, sb.charAt(j));
+        sb.setCharAt(j, temp);
+    }
+    public void helper(StringBuilder sb, int idx, List<String> ans){
+        if(idx == sb.length()){
+            ans.add(sb.toString())
+            return;
+        }
+        for(int i=idx; i<sb.length; i++){
+            swap(sb, i, idx);
+            helper(sb, idx+1, ans);
+            swap(sb, i, idx);
+        }
+    }
+    public ArrayList<String> findPermutation(String s) {
+        List<String> ans = new  
+        
+    }
+}
