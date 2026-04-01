@@ -1,0 +1,19 @@
+class Solution {
+    public static int rat(int sr, int sc, int dr, int dc, int [][]arr,boolean [][]vis){
+        if(sr > dr || sc > dc || arr[sr][sc] == 0 || vis[sr][sc])
+            return 0;
+        if(sr == dr && sc == dc)
+            return 1;
+        int c = 0;
+        c += rat(sr+1, sc, dr, dc, arr, vis);
+        c += rat(sr-1, sc, dr, dc, arr, vis);
+        c += rat(sr, sc+1, dr, dc, arr, vis);
+        c += rat(sr, sc-1, dr, dc, arr, vis);
+        vis[sr][sc] = false;
+        return c;
+    }
+    public ArrayList<String> ratInMaze(int[][] maze) {
+       boolean visited[][] = new boolean[maze.length][maze.length];
+       return rat(0, 0, maze.length-1, maze.length-1, maze, visited);
+    } 
+}
