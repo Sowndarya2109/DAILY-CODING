@@ -1,0 +1,24 @@
+class Solution {
+    public static int mcm(int arr[], int si, int  ei, int[][] dp){
+        if(ei - si == 1
+            return 0;
+        if(dp[si][ei] != -1)
+            return dp[si][ei];
+        int ans = Integer.MAX_VALUE;
+        for(int k=si+1; k<= ei-1; k++){
+            int lcost = mcm(arr, si, k, dp);
+            int rcost = mcm(arr, k, ei, dp);
+            int scost = arr[si] * arr[k] * arr[ei];
+            int tcost = lcost + rcost + scost;
+            ans = Math.min(ans, tcost);
+        }
+        return dp[si][ei] = ans;
+    }
+    static int matrixMultiplication(int arr[]) {
+        int dp[][] = new int[arr.length][arr.length];
+        for(int[] x : dp)
+            Arrays.fill(x, -1);
+        return mcm(arr, 0, arr.length-1, dp);
+        
+    }
+}
