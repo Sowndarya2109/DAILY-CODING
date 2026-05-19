@@ -1,0 +1,26 @@
+class Solution {
+    public void reverseArray(int arr[]) {
+        int n = arr.length;
+        int i, j;
+        for(i=0, j=n-1; i<n/2 && j>=n/2; i++, j--){
+            int temp = arr[i];
+            arr[i] = arr[j];
+            arr[j] = temp;
+        }
+        return;
+    }
+}
+
+OR
+
+class Solution {
+    reverseArray(arr) {
+        let l = 0, r = arr.length-1;
+        while(l<=r){
+            [arr[l], arr[r]] = [arr[r], arr[l]];
+            l++;
+            r--;
+        }
+        return arr;
+    }
+}
