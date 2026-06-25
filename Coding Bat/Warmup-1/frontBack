@@ -1,0 +1,10 @@
+public String frontBack(String str) {
+  if(str.length() <= 1){
+    return str;
+  }
+  char arr[] = str.toCharArray();
+  char temp =  arr[0];
+  arr[0] =  arr[str.length()-1];
+  arr[str.length()-1] = temp;
+  return new String(arr);
+}
