@@ -1,0 +1,17 @@
+class Solution {
+    public static int findEquilibrium(int arr[]) {
+        int num[] = new int[arr.length];
+        num[0] = arr[0];
+        for(int i=1; i<arr.length; i++){
+            num[i] = num[i-1] + arr[i];
+        }
+        for(int i=1; i<num.length-1; i++){
+            int l = num[i-1];
+            int r = num[num.length-1] - num[i];
+            if(l == r){
+                return i;
+            }
+        }
+        return -1;
+    }
+}
