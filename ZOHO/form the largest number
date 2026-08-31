@@ -1,0 +1,19 @@
+class Solution {
+    public String findLargest(int[] arr) {
+        String str[] = new String[arr.length];
+        for(int i=0; i<arr.length; i++){
+            str[i] = Integer.toString(arr[i]);
+        }
+        Arrays.sort(str, (a, b) -> {
+            return (b+a).compareTo(a+b);
+        });
+        if(str[0].equals("0")){
+            return "0";
+        }
+        StringBuilder s = new StringBuilder();
+        for(String x : str){
+            s.append(x);
+        }
+        return (s.toString());
+    }
+}
