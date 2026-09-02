@@ -1,0 +1,23 @@
+class Solution {
+    public static int closestToZero(int arr[]) {
+        int n = arr.length;
+        int sum = 0;
+        int left = 0;
+        int right = n-1;
+        Arrays.sort(arr);
+        int csum = arr[left] + arr[right];
+        while(left < right){
+            sum = arr[left] + arr[right];
+            if(Math.abs(sum) < Math.abs(csum) || Math.abs(sum) == Math.abs(csum) && sum > csum){
+                csum = sum;
+            }
+            if(sum < 0){
+                left++;
+            }
+            else{
+                right--;
+            }
+        }
+        return csum;
+    }
+}
