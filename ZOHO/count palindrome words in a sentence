@@ -1,0 +1,38 @@
+/******************************************************************************
+
+                            Online Java Compiler.
+                Code, Compile, Run and Debug java program online.
+Write your code in this editor and press "Run" button to execute it.
+
+*******************************************************************************/
+import java.util.*;
+import java.io.*;
+public class Main
+{
+	public static void main(String[] args) {
+		 Scanner sc = new Scanner(System.in);
+		 int n = sc.nextInt();
+         String str = sc.next();
+         String arr[] = str.split(" ");
+         int count = 0;
+        for(String x : arr){
+            if(isAnagram(x)){
+                count++;
+            }
+        }
+      	System.out.print(count);
+      
+	}
+	public static boolean isAnagram(String word){
+	    int left = 0;
+	    int right = word.length()-1;
+	    while(left <= right){
+	        if(word.charAt(left) != word.charAt(right)){
+	            return false;
+	        }
+	        left++;
+	        right--;
+	    }
+	    return true;
+	}
+}
